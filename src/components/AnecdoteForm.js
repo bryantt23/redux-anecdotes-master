@@ -6,6 +6,8 @@ import {
   notificationHide
 } from '../reducers/notificationReducer';
 
+import { createAnecdote, addAnecdote } from '../services/anecdoteService';
+
 function AnecdoteForm() {
   const dispatch = useDispatch();
 
@@ -13,7 +15,10 @@ function AnecdoteForm() {
     e.preventDefault();
     const content = e.target.note.value;
     e.target.note.value = '';
-    dispatch(addNote(content));
+    const anecdote = createAnecdote(content);
+    console.log(anecdote);
+    addAnecdote(anecdote);
+    dispatch(addNote(anecdote));
     dispatch(notificationAddNote(content));
     setTimeout(() => {
       dispatch(notificationHide());

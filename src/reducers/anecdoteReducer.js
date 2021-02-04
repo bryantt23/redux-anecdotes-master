@@ -1,5 +1,3 @@
-const getId = () => (100000 * Math.random()).toFixed(0);
-
 const initialState = [];
 
 export const initializeAnecdotes = anecdotes => {
@@ -16,10 +14,10 @@ export const anecdoteVote = id => {
   };
 };
 
-export const addNote = content => {
+export const addNote = anecdote => {
   return {
     type: 'ADD_NOTE',
-    payload: content
+    payload: anecdote
   };
 };
 
@@ -32,8 +30,8 @@ const anecdoteReducer = (state = initialState, action) => {
       stateCopy[index].votes++;
       return stateCopy;
     case 'ADD_NOTE':
-      const content = action.payload;
-      const updatedState = state.concat({ content, id: getId(), votes: 0 });
+      const anecdote = action.payload;
+      const updatedState = state.concat(anecdote);
       return updatedState;
     case 'ANECDOTES_INIT':
       const anecdotes = action.payload;
