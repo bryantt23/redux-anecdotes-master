@@ -1,4 +1,4 @@
-import { getAllAnecdotes, addAnecdote } from '../services/anecdoteService';
+import { getAllAnecdotes, voteAnecdote } from '../services/anecdoteService';
 const initialState = [];
 
 export const initializeAnecdotes = () => {
@@ -11,16 +11,18 @@ export const initializeAnecdotes = () => {
   };
 };
 
-export const anecdoteVote = id => {
-  return {
-    type: 'VOTE',
-    payload: id
+export const anecdoteVote = anecdote => {
+  return async dispatch => {
+    await voteAnecdote(anecdote);
+    dispatch({
+      type: 'VOTE',
+      payload: anecdote.id
+    });
   };
 };
 
 export const addNote = anecdote => {
   return async dispatch => {
-    await addAnecdote(anecdote);
     dispatch({
       type: 'ADD_NOTE',
       payload: anecdote

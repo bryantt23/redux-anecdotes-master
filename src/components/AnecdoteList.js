@@ -12,9 +12,9 @@ function AnecdoteList() {
   const anecdotes = useSelector(state => state.anecdotes);
   const dispatch = useDispatch();
 
-  const vote = (id, content) => {
-    dispatch(anecdoteVote(id));
-    dispatch(notificationAddVote(content));
+  const vote = anecdote => {
+    dispatch(anecdoteVote(anecdote));
+    dispatch(notificationAddVote(anecdote.content));
     // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout
     setTimeout(() => {
       dispatch(notificationHide());
@@ -31,9 +31,7 @@ function AnecdoteList() {
           <div>{anecdote.content}</div>
           <div>
             has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id, anecdote.content)}>
-              vote
-            </button>
+            <button onClick={() => vote(anecdote)}>vote</button>
           </div>
         </div>
       ))}
