@@ -1,9 +1,13 @@
+import { getAllAnecdotes } from '../services/anecdoteService';
 const initialState = [];
 
-export const initializeAnecdotes = anecdotes => {
-  return {
-    type: 'ANECDOTES_INIT',
-    payload: anecdotes
+export const initializeAnecdotes = () => {
+  return async dispatch => {
+    const anecdotes = await getAllAnecdotes();
+    dispatch({
+      type: 'ANECDOTES_INIT',
+      payload: anecdotes
+    });
   };
 };
 
