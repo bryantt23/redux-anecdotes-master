@@ -1,4 +1,8 @@
-import { getAllAnecdotes, voteAnecdote } from '../services/anecdoteService';
+import {
+  getAllAnecdotes,
+  voteAnecdote,
+  addAnecdote
+} from '../services/anecdoteService';
 const initialState = [];
 
 export const initializeAnecdotes = () => {
@@ -23,6 +27,7 @@ export const anecdoteVote = anecdote => {
 
 export const addNote = anecdote => {
   return async dispatch => {
+    await addAnecdote(anecdote);
     dispatch({
       type: 'ADD_NOTE',
       payload: anecdote
