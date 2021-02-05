@@ -6,7 +6,7 @@ import {
   notificationHide
 } from '../reducers/notificationReducer';
 
-import { createAnecdote, addAnecdote } from '../services/anecdoteService';
+import { createAnecdote } from '../services/anecdoteService';
 
 function AnecdoteForm() {
   const dispatch = useDispatch();
@@ -16,8 +16,6 @@ function AnecdoteForm() {
     const content = e.target.note.value;
     e.target.note.value = '';
     const anecdote = createAnecdote(content);
-    console.log(anecdote);
-    addAnecdote(anecdote);
     dispatch(addNote(anecdote));
     dispatch(notificationAddNote(content));
     setTimeout(() => {
