@@ -1,17 +1,29 @@
 const initialState = { show: false, message: '' };
 console.log(initialState);
 
-export const notificationAddVote = content => {
-  return {
-    type: 'ADD_VOTE_NOTIFICATION',
-    payload: content
+export const notificationAddVote = (content, timeout) => {
+  return async dispatch => {
+    dispatch({
+      type: 'ADD_VOTE_NOTIFICATION',
+      payload: content
+    });
+    // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout
+    setTimeout(() => {
+      dispatch(notificationHide());
+    }, timeout * 1000);
   };
 };
 
-export const notificationAddNote = content => {
-  return {
-    type: 'ADD_NOTE_NOTIFICATION',
-    payload: content
+export const notificationAddNote = (content, timeout) => {
+  return async dispatch => {
+    dispatch({
+      type: 'ADD_NOTE_NOTIFICATION',
+      payload: content
+    });
+    // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout
+    setTimeout(() => {
+      dispatch(notificationHide());
+    }, timeout * 1000);
   };
 };
 

@@ -14,11 +14,7 @@ function AnecdoteList() {
 
   const vote = anecdote => {
     dispatch(anecdoteVote(anecdote));
-    dispatch(notificationAddVote(anecdote.content));
-    // https://stackoverflow.com/questions/35411423/how-to-dispatch-a-redux-action-with-a-timeout
-    setTimeout(() => {
-      dispatch(notificationHide());
-    }, 5000);
+    dispatch(notificationAddVote(anecdote.content, 3));
   };
 
   let sortedAnecdotes = anecdotes

@@ -17,10 +17,7 @@ function AnecdoteForm() {
     e.target.note.value = '';
     const anecdote = createAnecdote(content);
     dispatch(addNote(anecdote));
-    dispatch(notificationAddNote(content));
-    setTimeout(() => {
-      dispatch(notificationHide());
-    }, 5000);
+    dispatch(notificationAddNote(content, 5000));
   };
 
   return (
